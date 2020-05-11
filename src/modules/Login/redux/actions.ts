@@ -1,7 +1,11 @@
-import { createActions } from 'redux-actions';
+import { createActions } from '../../../utils/actions';
 
 const loginActions = createActions({
-  login: undefined,
+  login: {
+    trigger: undefined,
+    success: undefined,
+    failure: undefined,
+  },
 });
 
 export { loginActions };

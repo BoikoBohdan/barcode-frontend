@@ -1,6 +1,6 @@
-import { propOr } from 'ramda';
-import { ILogin, IAction } from './interfaces';
+import { ILogin } from './interfaces';
 import { loginActions } from './actions';
+import { createReducer } from '../../../utils/reducers';
 
 const initialState: ILogin = {
   login: false,
@@ -8,14 +8,13 @@ const initialState: ILogin = {
   loading: false,
 };
 
-const loginReducer = (state: ILogin = initialState, action: IAction) => {
-  const actionHash = {
-    [loginActions.login as any]: (state: ILogin) => {
+const loginReducer = createReducer(
+  {
+    [loginActions.login.trigger]: (state: ILogin, payload: any) => {
       return {};
     },
-  };
-  const reducerFn: Function | null = propOr(null, action.type, actionHash);
-  return reducerFn ? reducerFn(state) : state;
-};
+  },
+  initialState
+);
 
 export { loginReducer };
