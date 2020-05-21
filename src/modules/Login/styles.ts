@@ -7,7 +7,7 @@ export const styles = {
     display: 'flex',
   },
   loginImage: {
-    width: '60%',
+    width: 'inherit',
     height: '100%',
     display: 'block',
     backgroundImage:
@@ -33,13 +33,6 @@ export const styles = {
   avatar: {
     margin: 1,
     // backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: 1,
-  },
-  submit: {
-    margin: '20px 0',
   },
   loginImageWrapper: {
     display: 'block',
