@@ -1,18 +1,15 @@
 import React, { useState, ChangeEvent } from 'react';
-import {
-  Button,
-  TextField,
-  FormControlLabel,
-  Checkbox,
-} from '@material-ui/core';
+import { Button, TextField } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
-export const LoginFormView = ({ classes, login }: any) => {
+export const SignUpFormView = ({ classes, signUp }: any) => {
   const history = useHistory();
   const [loginForm, changeLoginForm] = useState({
+    userName: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
-    remember: false,
   });
 
   const formHandler = (name: string) => (
@@ -26,12 +23,51 @@ export const LoginFormView = ({ classes, login }: any) => {
 
   const isSignUpButtonDisabled = !loginForm.email || !loginForm.password;
 
-  const loginHandler = () => {
-    login({ data: loginForm, history });
+  const signUpHandler = () => {
+    signUp({ data: loginForm, history });
   };
 
   return (
     <form className={classes.form} noValidate>
+      <TextField
+        variant="outlined"
+        margin="normal"
+        required
+        fullWidth
+        name="userName"
+        label="User name"
+        type="userName"
+        id="userName"
+        autoComplete="current-userName"
+        value={loginForm.userName}
+        onChange={formHandler('userName')}
+      />
+      <TextField
+        variant="outlined"
+        margin="normal"
+        required
+        fullWidth
+        name="firstName"
+        label="First name"
+        type="firstName"
+        id="firstName"
+        autoComplete="current-firstName"
+        value={loginForm.firstName}
+        onChange={formHandler('firstName')}
+      />
+      <TextField
+        variant="outlined"
+        margin="normal"
+        required
+        fullWidth
+        name="lastName"
+        label="First name"
+        type="lastName"
+        id="lastName"
+        autoComplete="current-lastName"
+        value={loginForm.lastName}
+        onChange={formHandler('lastName')}
+      />
       <TextField
         variant="outlined"
         margin="normal"
@@ -58,24 +94,13 @@ export const LoginFormView = ({ classes, login }: any) => {
         value={loginForm.password}
         onChange={formHandler('password')}
       />
-      <FormControlLabel
-        control={
-          <Checkbox
-            value="remember"
-            color="primary"
-            checked={loginForm.remember}
-            onChange={formHandler('remember')}
-          />
-        }
-        label="Remember me"
-      />
       <Button
         fullWidth
         variant="contained"
         color="primary"
         disabled={isSignUpButtonDisabled}
         className={classes.submit}
-        onClick={loginHandler}
+        onClick={signUpHandler}
       >
         Sign In
       </Button>

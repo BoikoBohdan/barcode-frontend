@@ -1,11 +1,7 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
-} from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { Login } from '../../modules/Login';
+import { Register } from '../../modules/SignUp';
 
 const MenuWrapper = (child: any) => {
   return (
@@ -17,21 +13,19 @@ const MenuWrapper = (child: any) => {
 };
 
 const AuthContainer = () => {
-  const isLoggedIn = true;
-
+  const isLoggedIn = localStorage.getItem('token');
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/home" component={() => <div>nav</div>} />
-        {isLoggedIn && (
-          <Switch>
-            <Route component={() => <>main</>} />
-          </Switch>
-        )}
-        <Redirect to="/login" />
-      </Switch>
-    </Router>
+    <Switch>
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/sign-up" component={Register} />
+      <Route exact path="/home" component={() => <div>nav</div>} />
+      {isLoggedIn && (
+        <Switch>
+          <Route component={() => <>main</>} />
+        </Switch>
+      )}
+      <Redirect to="/login" />
+    </Switch>
   );
 };
 

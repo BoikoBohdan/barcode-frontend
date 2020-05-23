@@ -2,7 +2,7 @@ import { LoginFormView } from './view';
 import { withStyles } from '@material-ui/core';
 import { loginActions } from '../../redux/actions';
 import { connect } from 'react-redux';
-import { styles } from '../../styles';
+import { styles } from './styles';
 
 const mapDispatchToProps = {
   login: loginActions.login.trigger,

@@ -11,10 +11,19 @@ const initialState: ILogin = {
 const loginReducer = createReducer(
   {
     [loginActions.login.trigger]: (state: ILogin, payload: any) => {
-      return {};
+      return {
+        ...state,
+        loading: true,
+      };
+    },
+    [loginActions.login.fullfil]: (state: ILogin, payload: any) => {
+      return {
+        ...state,
+        loading: false,
+      };
     },
   },
-  initialState
+  initialState,
 );
 
 export { loginReducer };

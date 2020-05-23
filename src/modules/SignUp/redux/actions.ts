@@ -1,7 +1,7 @@
 import { createActions } from '../../../utils/actions';
 
-const loginActions = createActions({
-  login: {
+const signUpActions = createActions({
+  signUp: {
     trigger: undefined,
     request: undefined,
     success: undefined,
@@ -10,4 +10,4 @@ const loginActions = createActions({
   },
 });
 
-export { loginActions };
+export { signUpActions };
