@@ -1,17 +1,18 @@
-import { takeLatest } from 'redux-saga/effects';
+import { takeLatest, put } from 'redux-saga/effects';
 import { loginActions } from './redux/actions';
 import apiClient from '../../utils/apiClient';
 
 function* login({ payload }: any) {
   try {
-    console.log('???');
+    yield put(loginActions.login.request());
     const response = yield apiClient.post({
       url: '/auth/login',
       data: payload,
+      requireAuth: false,
     });
-    console.log(response);
-  } catch (e) {
-    console.log(e);
+    yield put(loginActions.login.success(response));
+  } catch (error) {
+    yield put(loginActions.login.failure({ error }));
   }
 }
 

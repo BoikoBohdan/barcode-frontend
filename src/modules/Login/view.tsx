@@ -21,7 +21,7 @@ interface ILogin {
 
 export const LoginView = ({ classes, loading }: ILogin) => {
   return (
-    <Container component="main" className={classes.loginRoot}>
+    <Container component="main" className={classes.loginRoot} maxWidth={false}>
       <CssBaseline />
       <div className={classes.loginImage}></div>
       <div className={classes.loginWrapper}>

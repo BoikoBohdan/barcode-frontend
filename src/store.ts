@@ -1,9 +1,11 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import { loginReducer } from './modules/Login';
-import { fork } from 'redux-saga/effects';
+import { fork, all } from 'redux-saga/effects';
 import { loginSaga } from './modules/Login/sagas';
+import { watchFailures } from './modules/Notification/sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -13,11 +15,11 @@ const reducers = combineReducers({
 
 const store = createStore(
   reducers,
-  composeWithDevTools(applyMiddleware(sagaMiddleware))
+  composeWithDevTools(applyMiddleware(sagaMiddleware, logger))
 );
 
 function* rootSaga() {
-  yield fork(loginSaga);
+  yield all([fork(loginSaga), fork(watchFailures)]);
 }
 sagaMiddleware.run(rootSaga);
 

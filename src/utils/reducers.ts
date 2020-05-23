@@ -30,7 +30,7 @@ const createReducer = (reducerHash: IAnyObj, initState: IAnyObj) => {
   return (state: IAnyObj, action: IAction) => {
     const reducer = reducerHash[action.type];
     if (reducer) {
-      reducer(state, action.payload);
+      return reducer(state, action.payload);
     }
     return state || initState;
   };
